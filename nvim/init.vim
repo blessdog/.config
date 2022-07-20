@@ -1,13 +1,14 @@
-" >> load plugins
+ " >> load plugins
 call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'neovim/nvim-lspconfig'
+    Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
     Plug 'morhetz/gruvbox'
     Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+    Plug 'jiangmiao/auto-pairs'
 
 "debugging
 "    Plug 'mfussenegger/nvim-dap'
@@ -20,7 +21,13 @@ call plug#end()
 
 
 "colorscheme PaperColor
-colorscheme gruvbox
+colorscheme gruvbox 
+hi Normal ctermbg=NONE guibg=NONE
+
+" remapping gp and gd to switch buffers
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>  
 
 " basic settings
 syntax on
@@ -28,7 +35,9 @@ set guifont=ProggyCleanTT\ 12
 set number
 set relativenumber
 set ignorecase      " ignore case
-set smartcase     " but don't ignore it, when search string contains uppercase letters
+set smartcase     " but don't ignore it, when search string contains uppercase letters 
+set hidden      " makes vim work like every other multiple file editor
+set switchbuf=usetab,newtab     "switching to existing tab if buffer is open, or creating new if not
 set nocompatible
 set incsearch        " do incremental searching
 set visualbell
@@ -44,12 +53,16 @@ set autoindent
 "set mouse=a  " mouse support
 "searches the current directory and recursivly thereafter
 set path=.,,** 
+set wildchar=<Tab> wildmenu wildmode=full
+set nohlsearch
 
- "split navigations
+        
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 "filetree mapping cp from Primeagen
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
