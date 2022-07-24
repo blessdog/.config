@@ -13,8 +13,8 @@ zstyle ':z4h:' auto-update-days '28'
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'mac'
 
-# Start tmux if not already in tmux.
-zstyle ':z4h:' start-tmux       command tmux -u new -A -D -t z4h
+# Don't start tmux.
+zstyle ':z4h:' start-tmux       no
 
 # Mark up shell's output with semantic information.
 zstyle ':z4h:' term-shell-integration 'yes'
@@ -93,13 +93,29 @@ compdef _directories md
 alias tree='tree -a -I .git'
 
 # Add flags to existing aliases.
-alias ls="${aliases[ls]:-ls} -1"
-alias zshrc="nvim ~/.zshrc"
-alias vimrc="nvim ~/.config/nvim/init.vim"
+alias ls="${aliases[ls]:-ls} -A"
+alias zshrc="vim ~/.zshrc"
 alias vim="nvim"
-alias udemy="~/Documents/Udemy_Python"
+alias vimrc="vim ~/.config/nvim/init.vim"
+alias udemy="cd ~/Documents/Udemy_Python"
+alias edi="cd ~/Documents/Udemy_Python/17"
+alias jup="jupyter notebook"
+alias key="cd ~/Documents/ShortCuts/Key"
+alias py="python3"
+alias pip3="pip3.10"
+alias twt="cd ~/python/techWithTim"
+
+#Tmux 
+#tput cup "$LINES"
 
 
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended"
+
+########### EOF *************************
+#****************************************
