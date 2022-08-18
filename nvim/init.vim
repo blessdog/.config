@@ -16,6 +16,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
+    Plug 'ervandew/supertab'
 
 "debugging
 "    Plug 'mfussenegger/nvim-dap'
@@ -38,6 +39,7 @@ map gd :bd<cr>
 
 " basic settings
 syntax on
+set mouse=nv
 set guifont=ProggyCleanTT\ 12
 set number
 set relativenumber
@@ -62,14 +64,24 @@ set autoindent
 set path=.,,** 
 set wildchar=<Tab> wildmenu wildmode=full
 set nohlsearch
+"View multiple lines pasted
+set viminfo='100,<1000,s100,h
 
-        
+"vim-surround to wrap in brackets
+xnoremap <leader>s xi()<Esc>P
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
+"insert mode autocompletion shortcuts
+inoremap ^] ^X^]
+inoremap ^F ^X^F
+inoremap ^D ^X^D
+inoremap ^L ^X^L
 
 "filetree mapping cp from Primeagen
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
